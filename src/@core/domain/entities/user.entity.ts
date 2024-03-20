@@ -1,55 +1,59 @@
+import { Email } from '../value-objects/email.value-object';
+import { Status } from '../value-objects/status.value-object';
+import { Url } from '../value-objects/url.value-object';
+
 export type TUserProps = {
-    name: string
-    email: string // TODO: create value object email
-    photo: string // TODO: create value object photo
-    status: string // TODO: create value object status
-}
+  name: string;
+  email: Email;
+  photo: Url;
+  status: Status;
+};
 
 export class User {
-    id: number
-    props: TUserProps
+  id: number;
+  props: TUserProps;
 
-    constructor(props: TUserProps) {
-        this.props = props
-    }
+  constructor(props: TUserProps) {
+    this.props = props;
+  }
 
-    getId() {
-        return this.id
-    }
+  getId() {
+    return this.id;
+  }
 
-    getName() {
-        return this.props.name
-    }
+  getName() {
+    return this.props.name;
+  }
 
-    getEmail() {
-        return this.props.email
-    }
+  getEmail() {
+    return this.props.email;
+  }
 
-    getPhoto() {
-        return this.props.photo
-    }
+  getPhoto() {
+    return this.props.photo;
+  }
 
-    getStatus() {
-        return this.props.status
-    }
+  getStatus() {
+    return this.props.status;
+  }
 
-    setId(id: number) {
-        this.id = id
-    }
+  setId(id: number) {
+    this.id = id;
+  }
 
-    setName(name: string) {
-        this.props.name = name
-    }
+  setName(name: string) {
+    this.props.name = name;
+  }
 
-    setEmail(email: string) {
-        this.props.email = email
-    }
+  setEmail(email: Email) {
+    this.props.email = email;
+  }
 
-    setPhoto(photo: string) {
-        this.props.photo = photo
-    }
+  setPhoto(photo: Url) {
+    this.props.photo = photo;
+  }
 
-    setStatus(status: string) {
-        this.props.status = status
-    }
+  setStatus(status: Status) {
+    this.props.status = status;
+  }
 }
