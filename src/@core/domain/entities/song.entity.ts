@@ -1,13 +1,14 @@
 import { Guard } from "../shared/core/guard/guard.core";
 import { Result } from "../shared/core/result/result.core";
 import { Url } from "../value-objects/url.value-object"
+import { Genre } from "./genre.entity";
 
 export type TSongProps = {
   title: string
   artist?: string // TODO: create artist entity
   url: Url;
   photo: Url;
-  genre: string; //TODO: create genre entity
+  genre: Genre; 
   isPublic: boolean;
 }
 
@@ -147,7 +148,7 @@ export class Song {
    * Sets the genre of the Song.
    * @param genre - The genre to set.
    */
-  setGenre(genre: string) {
+  setGenre(genre: Genre) {
     this.props.genre = genre;
   }
 
