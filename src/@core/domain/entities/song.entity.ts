@@ -7,7 +7,7 @@ export type TSongProps = {
   artist?: string // TODO: create artist entity
   url: Url;
   photo: Url;
-  style: string; //TODO: create style entity
+  genre: string; //TODO: create genre entity
   isPublic: boolean;
 }
 
@@ -36,7 +36,7 @@ export class Song {
       { argument: props.title, argumentName: 'title' },
       { argument: props.url, argumentName: 'url' },
       { argument: props.photo, argumentName: 'photo' },
-      { argument: props.style, argumentName: 'style' },
+      { argument: props.genre, argumentName: 'genre' },
       { argument: props.isPublic, argumentName: 'isPublic' },
     ]);
 
@@ -88,11 +88,11 @@ export class Song {
   }
 
   /**
-   * Gets the style of the Song.
-   * @returns The style of the Song.
+   * Gets the genre of the Song.
+   * @returns The genre of the Song.
    */
-  getStyle() {
-    return this.props.style;
+  getGenre() {
+    return this.props.genre;
   }
 
   /**
@@ -144,11 +144,11 @@ export class Song {
   }
 
   /**
-   * Sets the style of the Song.
-   * @param style - The style to set.
+   * Sets the genre of the Song.
+   * @param genre - The genre to set.
    */
-  setStyle(style: string) {
-    this.props.style = style;
+  setGenre(genre: string) {
+    this.props.genre = genre;
   }
 
   /**
