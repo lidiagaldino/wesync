@@ -3,12 +3,14 @@ import { Result } from '../shared/core/result/result.core';
 import { Email } from '../value-objects/email.value-object';
 import { Status } from '../value-objects/status.value-object';
 import { Url } from '../value-objects/url.value-object';
+import { UserSong } from './user-song.entity';
 
 export type TUserProps = {
   name: string;
   email: Email;
   photo: Url;
   status: Status;
+  songs: UserSong[];
 };
 
 /**
@@ -124,5 +126,13 @@ export class User {
    */
   setStatus(status: Status) {
     this.props.status = status;
+  }
+
+  /**
+   * Adds a song to the list of songs for this user.
+   * @param song - the song to add
+   */
+  addSong(song: UserSong) {
+    this.props.songs.push(song);
   }
 }
