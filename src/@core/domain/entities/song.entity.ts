@@ -1,16 +1,14 @@
-import { Guard } from "../shared/core/guard/guard.core";
-import { Result } from "../shared/core/result/result.core";
-import { Url } from "../value-objects/url.value-object"
-import { Genre } from "./genre.entity";
+import { Guard } from '../shared/core/guard/guard.core';
+import { Result } from '../shared/core/result/result.core';
+import { Url } from '../value-objects/url.value-object';
+import { Genre } from './genre.entity';
 
 export type TSongProps = {
-  title: string
-  artist?: string // TODO: create artist entity
+  title: string;
   url: Url;
-  photo: Url;
-  genre: Genre; 
-  isPublic: boolean;
-}
+  genre: Genre;
+  duration: number;
+};
 
 /**
  * Represents a Song entity.
@@ -36,9 +34,11 @@ export class Song {
     const guardResults = Guard.againstNullOrUndefinedBulk([
       { argument: props.title, argumentName: 'title' },
       { argument: props.url, argumentName: 'url' },
-      { argument: props.photo, argumentName: 'photo' },
-      { argument: props.genre, argumentName: 'genre' },
-      { argument: props.isPublic, argumentName: 'isPublic' },
+      {
+        argument: props.genre,
+        argumentName: 'genre',
+      },
+      { argument: props.duration, argumentName: 'duration' },
     ]);
 
     if (guardResults.isFailure) {
@@ -65,27 +65,11 @@ export class Song {
   }
 
   /**
-   * Gets the artist of the Song.
-   * @returns The artist of the Song.
-   */
-  getArtist() {
-    return this.props.artist;
-  }
-
-  /**
    * Gets the URL of the Song.
    * @returns The URL of the Song.
    */
   getUrl() {
     return this.props.url;
-  }
-
-  /**
-   * Gets the photo URL of the Song.
-   * @returns The photo URL of the Song.
-   */
-  getPhoto() {
-    return this.props.photo;
   }
 
   /**
@@ -97,11 +81,11 @@ export class Song {
   }
 
   /**
-   * Checks if the Song is public.
-   * @returns True if the Song is public, false otherwise.
+   * Gets the duration of the Song.
+   * @returns The duration of the Song.
    */
-  getIsPublic() {
-    return this.props.isPublic;
+  getDuration() {
+    return this.props.duration;
   }
 
   /**
@@ -121,27 +105,11 @@ export class Song {
   }
 
   /**
-   * Sets the artist of the Song.
-   * @param artist - The artist to set.
-   */
-  setArtist(artist: string) {
-    this.props.artist = artist;
-  }
-
-  /**
    * Sets the URL of the Song.
    * @param url - The URL to set.
    */
   setUrl(url: Url) {
     this.props.url = url;
-  }
-
-  /**
-   * Sets the photo URL of the Song.
-   * @param photo - The photo URL to set.
-   */
-  setPhoto(photo: Url) {
-    this.props.photo = photo;
   }
 
   /**
@@ -153,10 +121,10 @@ export class Song {
   }
 
   /**
-   * Sets whether the Song is public or not.
-   * @param isPublic - True if the Song is public, false otherwise.
+   * Sets the duration of the song.
+   * @param duration - The duration to set.
    */
-  setIsPublic(isPublic: boolean) {
-    this.props.isPublic = isPublic;
+  setDuration(duration: number) {
+    this.props.duration = duration;
   }
 }
