@@ -17,8 +17,8 @@ export type TUserSongProps = {
  * A class that represents a user-song relationship.
  */
 export class UserSong {
-  id: number;
-  props: TUserSongProps;
+  private id: number;
+  private props: TUserSongProps;
 
   /**
    * Creates a new user-song relationship.
