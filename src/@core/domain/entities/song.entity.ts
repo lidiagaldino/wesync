@@ -14,8 +14,8 @@ export type TSongProps = {
  * Represents a Song entity.
  */
 export class Song {
-  id: number;
-  props: TSongProps;
+  private id: number;
+  private props: TSongProps;
 
   /**
    * Private constructor for creating a Song instance.
