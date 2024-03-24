@@ -17,8 +17,8 @@ export type TPlaylistProps = {
  * A class that represents a Playlist.
  */
 export class Playlist {
-  id: number;
-  props: TPlaylistProps;
+  private id: number;
+  private props: TPlaylistProps;
 
   /**
    * Private constructor for creating a Playlist instance.
