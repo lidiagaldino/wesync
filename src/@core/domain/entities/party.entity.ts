@@ -2,7 +2,7 @@ import { Guard } from '../shared/core/guard/guard.core';
 import { Result } from '../shared/core/result/result.core';
 import { Url } from '../value-objects/url.value-object';
 import { Member } from './member.entity';
-import { UserSong } from './user-song.entity';
+import { Queue } from './queue.entity';
 import { User } from './user.entity';
 
 export type TPartyProps = {
@@ -10,7 +10,7 @@ export type TPartyProps = {
   owner: User;
   members: Member[];
   invite?: Url;
-  queue: UserSong[];
+  queue: Queue;
   isPublic: boolean;
 };
 
@@ -98,7 +98,7 @@ export class Party {
   /**
    * Returns the queue of songs for the party.
    */
-  public getQueue(): UserSong[] {
+  public getQueue(): Queue {
     return this.props.queue;
   }
 
@@ -153,7 +153,7 @@ export class Party {
    * Sets the queue of songs for the party.
    * @param queue - The new queue of songs for the party.
    */
-  public setQueue(queue: UserSong[]): void {
+  public setQueue(queue: Queue): void {
     this.props.queue = queue;
   }
 
@@ -163,24 +163,6 @@ export class Party {
    */
   public setIsPublic(isPublic: boolean): void {
     this.props.isPublic = isPublic;
-  }
-
-  /**
-   * Adds a song to the end of the party's queue.
-   * @param song - The song to add to the queue.
-   */
-  public addSong(song: UserSong): void {
-    this.props.queue.push(song);
-  }
-
-  /**
-   * Removes a song from the party's queue.
-   * @param song - The song to remove from the queue.
-   */
-  public removeSong(song: UserSong): void {
-    this.props.queue = this.props.queue.filter(
-      (s) => s.getId() !== song.getId(),
-    );
   }
 
   /**
