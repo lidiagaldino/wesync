@@ -24,7 +24,7 @@ export class UserSong {
    * Creates a new user-song relationship.
    * @param props The properties of the user-song relationship.
    */
-  constructor(props: TUserSongProps) {
+  private constructor(props: TUserSongProps) {
     this.props = props;
   }
 

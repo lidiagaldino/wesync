@@ -24,7 +24,7 @@ export class Playlist {
    * Private constructor for creating a Playlist instance.
    * @param props - The properties of the Playlist.
    */
-  constructor(props: TPlaylistProps) {
+  private constructor(props: TPlaylistProps) {
     this.props = props;
   }
 
