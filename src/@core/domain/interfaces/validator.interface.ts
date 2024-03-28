@@ -1,3 +1,3 @@
 export interface IValidator<T> {
-    validate(schema: any, props: T): boolean;
+  validate(schema: any, props: T): boolean;
 }
