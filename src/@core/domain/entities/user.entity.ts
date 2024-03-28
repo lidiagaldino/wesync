@@ -1,12 +1,14 @@
 import { Guard } from '../shared/core/guard/guard.core';
 import { Result } from '../shared/core/result/result.core';
 import { Email } from '../value-objects/email.value-object';
+import { Password } from '../value-objects/password.value-object';
 import { Status } from '../value-objects/status.value-object';
 import { Url } from '../value-objects/url.value-object';
 import { UserSong } from './user-song.entity';
 
 export type TUserProps = {
   name: string;
+  password: Password;
   email: Email;
   photo: Url;
   status: Status;
@@ -39,6 +41,7 @@ export class User {
       { argument: props.email, argumentName: 'email' },
       { argument: props.photo, argumentName: 'photo' },
       { argument: props.status, argumentName: 'status' },
+      { argument: props.password, argumentName: 'password' },
     ]);
 
     if (guardResults.isFailure) {
@@ -62,6 +65,14 @@ export class User {
    */
   getName() {
     return this.props.name;
+  }
+
+  /**
+   * Gets the password of the User.
+   * @returns The password of the User.
+   */
+  getPassword() {
+    return this.props.password;
   }
 
   /**
@@ -126,6 +137,14 @@ export class User {
    */
   setStatus(status: Status) {
     this.props.status = status;
+  }
+
+  /**
+   * Sets a password for the user
+   * @param password - the password to set
+   */
+  setPassword(password: Password) {
+    this.props.password = password;
   }
 
   /**
