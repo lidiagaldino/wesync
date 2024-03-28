@@ -2,10 +2,14 @@ export type TInputUserDTO = {
   name: string;
   email: string;
   password?: string;
+  photo: string;
+  status: string;
 };
 
 export type TOutputUserDTO = {
-  id: string;
+  id: number;
   name: string;
   email: string;
+  photo: string;
+  status: string;
 };
