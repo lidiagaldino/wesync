@@ -6,6 +6,12 @@ export type TInputUserDTO = {
   status: string;
 };
 
+export type TInputUpdateUserDTO = {
+  name: string;
+  photo: string;
+  status: string;
+};
+
 export type TOutputUserDTO = {
   id: number;
   name: string;
