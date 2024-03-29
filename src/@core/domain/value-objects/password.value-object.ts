@@ -24,4 +24,8 @@ export class Password {
 
     return Result.ok(new Password(props));
   }
+
+  getPassword() {
+    return this.props.password;
+  }
 }
