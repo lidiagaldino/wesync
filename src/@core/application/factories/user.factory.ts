@@ -1,16 +1,14 @@
 import { User } from '../../domain/entities/user.entity';
-import { Either } from '../../domain/shared/core/result/either.core';
 import { left } from '../../domain/shared/core/result/left.core';
-import { Result } from '../../domain/shared/core/result/result.core';
 import { right } from '../../domain/shared/core/result/right.core';
+import { Response } from '../../domain/shared/core/result/response.core';
 import { Email } from '../../domain/value-objects/email.value-object';
 import { Password } from '../../domain/value-objects/password.value-object';
 import { Status } from '../../domain/value-objects/status.value-object';
 import { Url } from '../../domain/value-objects/url.value-object';
 import { TInputUserDTO } from '../dto/user.dto';
 
-type Response = Either<Result<any>, Result<User>>;
-export function userFactory(input: TInputUserDTO): Response {
+export function userFactory(input: TInputUserDTO): Response<User> {
   const email = Email.create({ email: input.email });
   if (email.isFailure) {
     return left(email);
