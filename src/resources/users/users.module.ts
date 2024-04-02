@@ -80,7 +80,7 @@ import { siginSchema } from '../../@core/infra/validation/yup/schemas/sigin.sche
     {
       provide: FindUserByIdUsecase,
       useFactory: (userRepository: IUserRepository) =>
-        new FindAllUserUsecase(userRepository),
+        new FindUserByIdUsecase(userRepository),
       inject: [UserPrismaRepository],
     },
     {
