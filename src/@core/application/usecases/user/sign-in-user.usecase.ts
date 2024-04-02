@@ -26,7 +26,7 @@ export class SignInUserUsecase {
    * @returns A promise that resolves to a token if the login is successful, otherwise rejects with an appropriate error.
    */
   async execute(data: TInputLoginDTO): Promise<TOutputLoginDTO> {
-    this.validator.validate(this.schema, data);
+    this.validate(data);
     const email = this.handleEmail(data.email);
     const user = await this.handleFindUser(email);
 
@@ -91,5 +91,17 @@ export class SignInUserUsecase {
       status: user.getStatus().getName(),
     });
     return token;
+  }
+
+  /**
+   * Validates the input data against the defined schema.
+   *
+   * @param data - The input data to be validated.
+   * @returns A boolean value indicating whether the data is valid or not.
+   */
+  validate(data: TInputLoginDTO): boolean {
+    const result = this.validator.validate(this.schema, data);
+    if (result.isValid) return true;
+    throw new BadRequestException(result.errorsResult);
   }
 }

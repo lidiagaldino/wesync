@@ -1,6 +1,7 @@
 import { IPasswordCryptography } from '../../../domain/interfaces/password-cryptography.interface';
 import { IValidator } from '../../../domain/interfaces/validator.interface';
 import { IUserRepository } from '../../../domain/repositories/user.repository';
+import { BadRequestException } from '../../../domain/shared/errors/bad-request.exception';
 import { TInputUserDTO, TOutputUserDTO } from '../../dto/user.dto';
 import { userFactory } from '../../factories/user.factory';
 import { mapOutput } from './map';
@@ -30,7 +31,9 @@ export class CreateUserUsecase {
    * @returns A boolean value indicating whether the data is valid or not.
    */
   validate(data: TInputUserDTO): boolean {
-    return this.validator.validate(this.schema, data).isValid;
+    const result = this.validator.validate(this.schema, data);
+    if (result.isValid) return true;
+    throw new BadRequestException(result.errorsResult);
   }
   /**
    * Encrypts the provided password using the password cryptography service.
