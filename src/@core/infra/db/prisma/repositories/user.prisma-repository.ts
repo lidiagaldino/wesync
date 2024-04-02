@@ -53,17 +53,20 @@ export class UserPrismaRepository implements IUserRepository {
     const result = await prisma.tbl_user.findUnique({
       where: { id },
     });
-    return this.mapOutput(result);
+    if (result) return this.mapOutput(result);
+    return null;
   }
   async findByEmail(email: Email): Promise<User> {
     const result = await prisma.tbl_user.findUnique({
       where: { email: email.getEmail() },
     });
-    return this.mapOutput(result);
+    if (result) return this.mapOutput(result);
+    return null;
   }
   async findAll(): Promise<User[]> {
     const result = await prisma.tbl_user.findMany();
-    return result.map(this.mapOutput);
+    if (result.length > 0) return result.map(this.mapOutput);
+    return null;
   }
 
   private mapOutput(user: tbl_user): User {
