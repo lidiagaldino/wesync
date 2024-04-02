@@ -98,7 +98,7 @@ import { siginSchema } from '../../@core/infra/validation/yup/schemas/sigin.sche
           crypto,
           userCryptography,
         ),
-      inject: [UserPrismaRepository, YupAdapter, JwtAdapter, BcryptAdapter],
+      inject: [UserPrismaRepository, YupAdapter, BcryptAdapter, JwtAdapter],
     },
   ],
 })
