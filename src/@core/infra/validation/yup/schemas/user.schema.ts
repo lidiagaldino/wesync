@@ -9,7 +9,7 @@ export const userSchema: yup.SchemaOf<TInputUserDTO> = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
   photo: yup.string().required(),
-  status: yup.string().required(),
+  status: yup.string().required().is(['ATIVO', 'INATIVO']),
 });
 
 export const updateUserSchema: yup.SchemaOf<TInputUpdateUserDTO> = yup
@@ -17,5 +17,5 @@ export const updateUserSchema: yup.SchemaOf<TInputUpdateUserDTO> = yup
   .shape({
     name: yup.string().required(),
     photo: yup.string().required(),
-    status: yup.string().required(),
+    status: yup.string().required().is(['ATIVO', 'INATIVO']),
   });
