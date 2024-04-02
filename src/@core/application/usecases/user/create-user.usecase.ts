@@ -30,7 +30,7 @@ export class CreateUserUsecase {
    * @returns A boolean value indicating whether the data is valid or not.
    */
   validate(data: TInputUserDTO): boolean {
-    return this.validator.validate(this.schema, data);
+    return this.validator.validate(this.schema, data).isValid;
   }
   /**
    * Encrypts the provided password using the password cryptography service.
