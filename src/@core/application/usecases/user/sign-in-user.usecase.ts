@@ -72,7 +72,7 @@ export class SignInUserUsecase {
    * @throws UnauthorizedException if the password is invalid.
    */
   private async validatePassword(password: string, hash: string) {
-    const isPasswordValid = await this.crypto.compare(hash, password);
+    const isPasswordValid = await this.crypto.compare(password, hash);
     if (!isPasswordValid) throw new UnauthorizedException();
   }
 
