@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { CreateUserUsecase } from '../../@core/application/usecases/user/create-user.usecase';
 import { UpdateUserUsecase } from '../../@core/application/usecases/user/update-user.usecase';
@@ -56,6 +57,7 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.deleteUsecase.execute(+id);
   }
