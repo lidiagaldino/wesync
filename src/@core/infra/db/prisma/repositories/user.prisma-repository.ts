@@ -79,6 +79,7 @@ export class UserPrismaRepository implements IUserRepository {
       status,
       songs: [],
     });
+    output.getValue().setId(user.id);
     return output.getValue();
   }
 }
