@@ -71,7 +71,7 @@ describe('CreateUserUsecase', () => {
       compare: jest.fn(),
     };
     validator = {
-      validate: jest.fn(),
+      validate: jest.fn().mockReturnValue({ isValid: true }),
     };
 
     usecase = new CreateUserUsecase(userRepository, crypto, validator, schema);
