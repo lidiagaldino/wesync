@@ -6,8 +6,8 @@ import { Genre } from './genre.entity';
 export type TSongProps = {
   title: string;
   url: Url;
-  genre: Genre;
-  duration: number;
+  genre?: Genre;
+  duration?: number;
 };
 
 /**
@@ -34,11 +34,6 @@ export class Song {
     const guardResults = Guard.againstNullOrUndefinedBulk([
       { argument: props.title, argumentName: 'title' },
       { argument: props.url, argumentName: 'url' },
-      {
-        argument: props.genre,
-        argumentName: 'genre',
-      },
-      { argument: props.duration, argumentName: 'duration' },
     ]);
 
     if (guardResults.isFailure) {
