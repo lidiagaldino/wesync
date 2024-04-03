@@ -26,8 +26,12 @@ export class Url {
    */
   public static create(props: TUrlProps): Result<Url> {
     const guardResult = Guard.againstNullOrUndefined(props.url, 'url');
-    if (guardResult.isFailure && !Url.isUrlValid(props.url))
-      return Result.fail<Url>(guardResult.getErrorValue());
+    if (guardResult.isFailure || !Url.isUrlValid(props.url))
+      return Result.fail<Url>(
+        guardResult.getErrorValue()
+          ? guardResult.getErrorValue()
+          : 'Invalid URL',
+      );
     return Result.ok<Url>(new Url(props));
   }
 
