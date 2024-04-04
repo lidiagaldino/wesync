@@ -44,28 +44,28 @@ export class Guard {
   }
 
   /**
-  * Checks if a string is at least a certain length.
-  *
-  * @param numChars - The minimum number of characters the string must be.
-  * @param text - The string to check.
-  * @returns A Result indicating whether the string is at least the specified length.
- */
+   * Checks if a string is at least a certain length.
+   *
+   * @param numChars - The minimum number of characters the string must be.
+   * @param text - The string to check.
+   * @returns A Result indicating whether the string is at least the specified length.
+   */
   public static againstAtLeast(
     numChars: number,
     text: string,
   ): Result<GuardResponse> {
-    return text.length >= numChars
+    return text?.length >= numChars
       ? Result.ok<GuardResponse>()
       : Result.fail<GuardResponse>(`Text is not at least ${numChars} chars.`);
   }
 
   /**
- * Checks if a string is at most a certain length.
- *
- * @param numChars - The maximum number of characters the string can be.
- * @param text - The string to check.
- * @returns A Result indicating whether the string is at most the specified length.
- */
+   * Checks if a string is at most a certain length.
+   *
+   * @param numChars - The maximum number of characters the string can be.
+   * @param text - The string to check.
+   * @returns A Result indicating whether the string is at most the specified length.
+   */
   public static againstAtMost(
     numChars: number,
     text: string,
@@ -76,12 +76,12 @@ export class Guard {
   }
 
   /**
- * Checks if a value is null or undefined.
- *
- * @param argument - The value to check.
- * @param argumentName - The name of the argument being checked.
- * @returns A Result indicating whether the value is null or undefined.
- */
+   * Checks if a value is null or undefined.
+   *
+   * @param argument - The value to check.
+   * @param argumentName - The name of the argument being checked.
+   * @returns A Result indicating whether the value is null or undefined.
+   */
   public static againstNullOrUndefined(
     argument: any,
     argumentName: string,
@@ -94,11 +94,11 @@ export class Guard {
   }
 
   /**
- * Checks if a value is null or undefined.
- *
- * @param args - The list of arguments to check.
- * @returns A Result indicating whether all of the values are null or undefined.
- */
+   * Checks if a value is null or undefined.
+   *
+   * @param args - The list of arguments to check.
+   * @returns A Result indicating whether all of the values are null or undefined.
+   */
   public static againstNullOrUndefinedBulk(
     args: GuardArgumentCollection,
   ): Result<GuardResponse> {
@@ -114,13 +114,13 @@ export class Guard {
   }
 
   /**
- * Checks if a value is one of a set of allowed values.
- *
- * @param value - The value to check.
- * @param validValues - The set of allowed values.
- * @param argumentName - The name of the argument being checked.
- * @returns A Result indicating whether the value is one of the allowed values.
- */
+   * Checks if a value is one of a set of allowed values.
+   *
+   * @param value - The value to check.
+   * @param validValues - The set of allowed values.
+   * @param argumentName - The name of the argument being checked.
+   * @returns A Result indicating whether the value is one of the allowed values.
+   */
   public static isOneOf(
     value: any,
     validValues: any[],
@@ -145,14 +145,14 @@ export class Guard {
   }
 
   /**
- * Checks if a number is within a specified range.
- *
- * @param num - The number to check.
- * @param min - The minimum value of the range.
- * @param max - The maximum value of the range.
- * @param argumentName - The name of the argument being checked.
- * @returns A Result indicating whether the number is within the specified range.
- */
+   * Checks if a number is within a specified range.
+   *
+   * @param num - The number to check.
+   * @param min - The minimum value of the range.
+   * @param max - The maximum value of the range.
+   * @param argumentName - The name of the argument being checked.
+   * @returns A Result indicating whether the number is within the specified range.
+   */
   public static inRange(
     num: number,
     min: number,
@@ -169,15 +169,15 @@ export class Guard {
     }
   }
 
- /**
- * Checks if a number is within a specified range.
- *
- * @param numbers - The list of numbers to check.
- * @param min - The minimum value of the range.
- * @param max - The maximum value of the range.
- * @param argumentName - The name of the argument being checked.
- * @returns A Result indicating whether all of the numbers are within the specified range.
- */
+  /**
+   * Checks if a number is within a specified range.
+   *
+   * @param numbers - The list of numbers to check.
+   * @param min - The minimum value of the range.
+   * @param max - The maximum value of the range.
+   * @param argumentName - The name of the argument being checked.
+   * @returns A Result indicating whether all of the numbers are within the specified range.
+   */
   public static allInRange(
     numbers: number[],
     min: number,
