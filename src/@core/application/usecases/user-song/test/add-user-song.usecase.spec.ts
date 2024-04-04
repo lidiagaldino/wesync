@@ -58,6 +58,7 @@ const mockSongRepository: ISongRepository = {
     return url.getUrl() === 'https://example.com/existing-song.mp3'
       ? Song.create({
           title: 'Existing song',
+          originalUrl: url,
           url,
         }).getValue()
       : null;
@@ -131,6 +132,7 @@ describe('AddUserSongUsecase', () => {
 
     const input: TInputUserSongDTO = {
       user_id: 1,
+      original_url: 'https://example.com/new-song.mp3',
       url: 'https://example.com/new-song.mp3',
       customName: 'New Song',
       photo: 'https://example.com/photo.jpg',
@@ -141,7 +143,6 @@ describe('AddUserSongUsecase', () => {
     const result = await usecase.execute(input);
 
     expect(result).toStrictEqual({ id: 1, ...input });
-    // Add more assertions as needed
   });
 
   it('should throw BadRequestException if URL is invalid', async () => {
@@ -153,6 +154,7 @@ describe('AddUserSongUsecase', () => {
 
     const input: TInputUserSongDTO = {
       user_id: 1,
+      original_url: 'invalid-url',
       url: 'invalid-url',
       customName: 'My Favorite Song',
       photo: 'https://example.com/photo.jpg',
@@ -172,6 +174,7 @@ describe('AddUserSongUsecase', () => {
 
     const input: TInputUserSongDTO = {
       user_id: 1,
+      original_url: 'https://example.com/song.mp3',
       url: 'https://example.com/song.mp3',
       customName: 'My Favorite Song',
       photo: 'invalid-photo-url',
@@ -191,7 +194,8 @@ describe('AddUserSongUsecase', () => {
 
     const input: TInputUserSongDTO = {
       user_id: 1,
-      url: 'https://example.com/existing-song.mp3', // Existing song URL
+      original_url: 'https://example.com/existing-song.mp3',
+      url: 'https://example.com/existing-song.mp3',
       customName: 'Existing Song',
       photo: 'https://example.com/photo.jpg',
       isPublic: true,
@@ -200,6 +204,4 @@ describe('AddUserSongUsecase', () => {
 
     await expect(usecase.execute(input)).rejects.toThrow();
   });
-
-  // Add more test cases for other scenarios (e.g., conflict, missing user, etc.)
 });
