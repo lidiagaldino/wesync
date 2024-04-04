@@ -22,8 +22,12 @@ export class Email {
    */
   public static create(props: TEmailProps): Result<Email> {
     const guardResult = Guard.againstNullOrUndefined(props.email, 'email');
-    if (guardResult.isFailure && !Email.isEmailValid(props.email)) {
-      return Result.fail<Email>(guardResult.getErrorValue());
+    if (guardResult.isFailure || !Email.isEmailValid(props.email)) {
+      return Result.fail<Email>(
+        guardResult.getErrorValue()
+          ? guardResult.getErrorValue()
+          : 'Invalid email',
+      );
     }
     return Result.ok<Email>(new Email(props));
   }
