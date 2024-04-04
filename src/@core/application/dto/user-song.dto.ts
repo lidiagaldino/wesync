@@ -1,5 +1,6 @@
 export type TInputUserSongDTO = {
   user_id: number;
+  original_url: string;
   url: string;
   customName: string;
   photo: string;
@@ -10,6 +11,7 @@ export type TInputUserSongDTO = {
 export type TOutputUserSongDTO = {
   id: number;
   user_id: number;
+  original_url: string;
   url: string;
   customName: string;
   photo: string;
