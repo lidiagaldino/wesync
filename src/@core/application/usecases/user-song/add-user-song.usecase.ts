@@ -35,9 +35,7 @@ export class AddUserSongUsecase {
    */
   async execute(data: TInputUserSongDTO): Promise<TOutputUserSongDTO> {
     const url = Url.create({ url: data.url });
-    console.log(url);
     if (url.isFailure) {
-      console.log(url.getErrorValue());
       throw new BadRequestException(JSON.stringify(url.getErrorValue()));
     }
 
