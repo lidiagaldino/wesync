@@ -5,6 +5,7 @@ import { Genre } from './genre.entity';
 
 export type TSongProps = {
   title: string;
+  originalUrl: Url;
   url: Url;
   genre?: Genre;
   duration?: number;
@@ -34,6 +35,7 @@ export class Song {
     const guardResults = Guard.againstNullOrUndefinedBulk([
       { argument: props.title, argumentName: 'title' },
       { argument: props.url, argumentName: 'url' },
+      { argument: props.originalUrl, argumentName: 'originalUrl' },
     ]);
 
     if (guardResults.isFailure) {
@@ -57,6 +59,14 @@ export class Song {
    */
   getTitle() {
     return this.props.title;
+  }
+
+  /**
+   * Gets the Orignial URL of the Song.
+   * @returns The Original URL of the Song.
+   */
+  getOriginalUrl() {
+    return this.props.originalUrl;
   }
 
   /**
@@ -97,6 +107,14 @@ export class Song {
    */
   setTitle(title: string) {
     this.props.title = title;
+  }
+
+  /**
+   * Sets the Original URL of the Song.
+   * @param url - The Original URL to set.
+   */
+  setOriginalUrl(url: Url) {
+    this.props.originalUrl = url;
   }
 
   /**
