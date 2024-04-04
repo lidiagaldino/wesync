@@ -7,7 +7,12 @@ describe('Song', () => {
       // Arrange
       const props: TSongProps = {
         title: 'Test Song',
-        url: Url.create({ url: 'https://example.com/song.mp3' }).getValue(),
+        originalUrl: Url.create({
+          url: 'https://example.com/song.mp3',
+        }).getValue(),
+        url: Url.create({
+          url: 'https://example.com/url.mp3',
+        }).getValue(),
       };
 
       // Act
@@ -22,7 +27,10 @@ describe('Song', () => {
       // Arrange
       const props: TSongProps = {
         title: null, // Missing title
-        url: Url.create({ url: 'https://example.com/song.mp3' }).getValue(),
+        originalUrl: Url.create({
+          url: 'https://example.com/song.mp3',
+        }).getValue(),
+        url: Url.create({ url: 'https://example.com/url.mp3' }).getValue(),
       };
 
       // Act
@@ -38,6 +46,7 @@ describe('Song', () => {
       const props: TSongProps = {
         title: 'Test Song',
         url: null, // Missing URL
+        originalUrl: null,
       };
 
       // Act
@@ -54,7 +63,10 @@ describe('Song', () => {
       // Arrange
       const song = Song.create({
         title: 'Test Song',
-        url: Url.create({ url: 'https://example.com/song.mp3' }).getValue(),
+        originalUrl: Url.create({
+          url: 'https://example.com/song.mp3',
+        }).getValue(),
+        url: Url.create({ url: 'https://example.com/url.mp3' }).getValue(),
       }).getValue();
       song.setId(1);
 
