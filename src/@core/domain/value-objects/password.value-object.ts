@@ -15,7 +15,7 @@ export class Password {
   public static create(props: TPasswordProps): Result<Password> {
     const guardResults = Guard.combine([
       Guard.againstNullOrUndefined(props.password, 'password'),
-      Guard.againstAtLeast(8, 'password'),
+      Guard.againstAtLeast(8, props.password),
     ]);
 
     if (guardResults.isFailure) {
