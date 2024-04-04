@@ -38,9 +38,18 @@ export class AddUserSongUsecase {
     if (url.isFailure) {
       throw new BadRequestException(JSON.stringify(url.getErrorValue()));
     }
-
+    const originalUrl = Url.create({ url: data.original_url });
+    if (originalUrl.isFailure) {
+      throw new BadRequestException(
+        JSON.stringify(originalUrl.getErrorValue()),
+      );
+    }
     const user = await this.userRepository.findById(data.user_id);
-    const song = await this.findOrCreateSong(url.getValue(), data.customName);
+    const song = await this.findOrCreateSong(
+      originalUrl.getValue(),
+      url.getValue(),
+      data.customName,
+    );
 
     await this.checkForExistingUserSong(user, song);
 
@@ -85,11 +94,16 @@ export class AddUserSongUsecase {
    * @returns The found or created song entity.
    * @throws BadRequestException if song creation fails.
    */
-  private async findOrCreateSong(url: Url, customName: string) {
-    const song = await this.songRepository.findByUrl(url);
+  private async findOrCreateSong(
+    originalUrl: Url,
+    url: Url,
+    customName: string,
+  ) {
+    const song = await this.songRepository.findByUrl(originalUrl);
     if (song) return song;
 
     const newSong = Song.create({
+      originalUrl,
       url,
       title: customName,
     });
