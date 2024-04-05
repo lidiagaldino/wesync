@@ -22,6 +22,7 @@ export class CreateUserUsecase {
       const result = await this.userRepository.create(user.value.getValue());
       return mapOutput(result);
     }
+    throw new BadRequestException(user.value.getErrorValue());
   }
 
   /**
